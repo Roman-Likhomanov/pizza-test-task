@@ -12,10 +12,6 @@ let Employee = ({ employee, setEditEmployee }) => {
         setEditEmployee(employee);
     }
 
-    const replaceEmployee = (newEmployee) => {
-        employee = newEmployee
-    }
-
     return (
         <tr onClick={clickRowHandler}>
             <td>{employee.name}</td>

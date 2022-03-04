@@ -7,7 +7,8 @@ import { Route, Routes } from 'react-router-dom';
 import EditEmployees from '../EditEmployees/EditEmployees';
 
 
-let Employees = ({ employees,
+let Employees = ({ filtered, 
+    employees,
     setEmployees,
     sortData,
     sortDataDate,
@@ -56,7 +57,7 @@ let Employees = ({ employees,
                         </thead>
                         <tbody>
                             {
-                                employees.map(e => <Employee employee={e}
+                                filtered.map(e => <Employee employee={e}
                                     key={e.name}
                                     setEditEmployee={setEditEmployee}
                                 />)

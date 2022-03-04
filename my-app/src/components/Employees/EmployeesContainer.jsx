@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { setEmployees, setDirectionSort, setEditEmployee } from '../../redux/employees-reducer';
+import { setEmployees, setDirectionSort, setEditEmployee, setFiltered } from '../../redux/employees-reducer';
 import employeesJson from './../../data/employees.json'
 import Employees from './Employees';
 
@@ -11,6 +11,10 @@ const EmployeesContainer = (props) => {
   useEffect(() => {
     props.setEmployees(employeesJson);
   }, []);
+
+  useEffect(() => {
+    props.setFiltered(props.employees);
+  }, [props.employees]);
 
   const sortData = (field) => {
     const copyData = props.employees.concat();
@@ -61,7 +65,7 @@ const EmployeesContainer = (props) => {
     if (!(filterValue || checkboxValue)) {
       return alert("Заполните данные корректно");
     } else {
-      return props.setEmployees(
+      return props.setFiltered(
         props.employees.filter(
           el => {
             return (el.role.includes(filterValue)
@@ -93,6 +97,7 @@ const EmployeesContainer = (props) => {
 
   return <>
     <Employees
+      filtered={props.filtered}
       employees={props.employees}
       setEmployees={props.setEmployees}
       sortData={sortData}
@@ -110,11 +115,12 @@ let mapStateToProps = (state) => {
   return {
     employees: state.employeesPage.employees,
     directionSort: state.employeesPage.directionSort,
-    editEmployee: state.employeesPage.editEmployee
+    editEmployee: state.employeesPage.editEmployee,
+    filtered: state.employeesPage.filtered
   }
 }
 
 export default compose(
   connect(mapStateToProps,
-    { setEmployees, setDirectionSort, setEditEmployee })
+    { setEmployees, setDirectionSort, setEditEmployee, setFiltered })
 )(EmployeesContainer);
