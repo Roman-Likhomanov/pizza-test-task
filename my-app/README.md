@@ -7,3 +7,5 @@
 :white_check_mark: Есть кнопка "Добавить сотрудника", при нажатии которой появляется форма для добавления нового сотрудника.  
 :white_check_mark: Приложение поддерживает роутинг (browser history).  
 :white_check_mark: Адаптивная верстка.
+
+https://roman-likhomanov.github.io/pizza-test-task/
